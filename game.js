@@ -156,11 +156,9 @@ function updateStates(m) {
         let oldPlayer;
         if (state == null || state.players == null || (oldPlayer = state.players[k]) == null) {
             newPlayer.lastPos = newPlayer.pos;
-        //let oldPlayer = state.players[k];
-
         } else
             newPlayer.lastPos = oldPlayer.pos;
-        m.players[k] = newPlayer;
+        m.players[k] = newPlayer;//might be unneeded
     }
 
     // Camera
@@ -647,7 +645,7 @@ function keys(key = 0, value = true) {
     else overlays[key]?.classList?.remove("overlayactive");
 }
 function changePower(slot = 0, power = 0) {
-    //if (state.players[state.infos.id].states.includes("Died")) return;
+    if (state.players[state.infos.id].states.includes("Died")) return;
     power = Number(power);
     if (!powers.has(power)) return;
     /*if (slot) {
@@ -707,7 +705,6 @@ function changePower(slot = 0, power = 0) {
 }
 function togglePauseMenu() {
     pauseMenuOpen = !pauseMenuOpen;
-    console.log(pauseMenuOpen);
     if (pauseMenuOpen) {
         show(loginDiv);
         show(pauseGameDiv);

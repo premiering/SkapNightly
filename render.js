@@ -121,9 +121,16 @@
  * @param {number} camX
  * @param {number} camY
  */
+
+var camDiffX = 0;
+var camDiffY = 0;
+
 function render() {
     updateStatGraphs();
     updateParticles();
+
+    camDiffX = 0;
+    camDiffY = 0;
 
     // Camera
     if (freeCam) {
@@ -146,6 +153,8 @@ function render() {
             //camY = player.pos.y;
             camX = intpPos.x;
             camY = intpPos.y;
+            camDiffX = intpPos.x - player.pos.x;
+            camDiffY = intpPos.y - player.pos.y;
         }
     }
 
@@ -317,6 +326,8 @@ function updateParticles() {
         return (p.o -= 0.05) > 0;
     });
     particles.jetpack = particles.jetpack.filter(p => {
+        p.lx = p.x;
+        p.ly = p.y;
         p.x += p.vx;
         p.y += p.vy;
         p.hue += 10;
@@ -861,11 +872,13 @@ function renderParticles() {
         ctx.globalAlpha = p.o;
         ctx.fill();
     }
+    //console.log(Object.entries(offset));
+    let player = state.players[state.infos.id];
     for (let p of particles.jetpack) {
         ctx.fillStyle = `hsl(${p.hue},${p.s}%,50%)`;
         ctx.globalAlpha = p.o;
-        console.log(p);
-        ctx.fillRect(canvas.width / 2 + camScale * (p.x - p.w / 2 - camX), canvas.height / 2 + camScale * (p.y - p.h / 2 - camY), p.w * camScale, p.h * camScale);
+        let pos = {x: p.x - p.w / 2 - camX - (player.pos.x - player.lastPos.x), y: p.y - p.h / 2 - camY - (player.pos.y - player.lastPos.y)};
+        ctx.fillRect(canvas.width / 2 + camScale * pos.x, canvas.height / 2 + camScale * pos.y, p.w * camScale, p.h * camScale);
     }
     for (let p of particles.trail) {
         ctx.globalAlpha = p.o;

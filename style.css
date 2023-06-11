@@ -22,8 +22,11 @@ body {
 #logo {
     font-weight: 500;
 }
-#desc {
+#desc, h4 {
     font-weight: 500;
+}
+a {
+    color: rgb(105, 54, 170);
 }
 
 body.scroll {
