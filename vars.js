@@ -890,7 +890,7 @@ function zerotix(x = "ZeroTix") {
  */
 function getToken(func, onerr = console.error) {
     grecaptcha.ready(() => {
-        grecaptcha.execute("6Ld2wFMaAAAAAIL8fjR5Bwg6kn3fP2t-b9NFoK_R", {
+        grecaptcha.execute("6LfmQoQmAAAAAN-CNtDsFTTLekk-JRNsdhU9T1Le", {
             action: "submit"
         }).then(func).catch(onerr);
     });
