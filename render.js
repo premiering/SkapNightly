@@ -896,6 +896,8 @@ function getInterpolatedPos(o, n) {
     const tickTime = 1000/30;//1000ms over 30 ticks a second
     var pos = {...n};//Copy the player pos, dont use ref
     var progress = (Date.now() - lastUpdate) / tickTime;
+    if (progress > 1)
+        progress = 1;
     if (o != n) {
         pos.x = o.x + (n.x - o.x) * progress;
         pos.y = o.y + (n.y - o.y) * progress;
