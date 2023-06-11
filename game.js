@@ -68,11 +68,6 @@ function updateStates(m) {
     lastUpdate = now;
 
     let player = m.players[m.infos.id];
-    // Camera
-    if (!freeCam) {
-        camX = player.pos.x;
-        camY = player.pos.y;
-    }
     send({
         e: "username",
         username: player.name
@@ -122,7 +117,7 @@ function updateStates(m) {
         //power0.disabled = false;
         //power1.disabled = false;
     };
-    document.title = `SkapClient${player.states.includes("Died") ? " <Dead>" : player.states.includes("Freeze") ? " <Frozen>" : ""}`
+    document.title = `SkapNightly${player.states.includes("Died") ? " <Dead>" : player.states.includes("Freeze") ? " <Frozen>" : ""}`
 
     // List players
     while (playerList.firstChild) {
@@ -154,6 +149,26 @@ function updateStates(m) {
     velSpan.innerHTML = vel.toFixed(3);
     velXSpan.innerHTML = player.vel.x;
     velYSpan.innerHTML = player.vel.y;
+
+    //Update last position values
+    for (let [k, v] of Object.entries(m.players)) {
+        let newPlayer = m.players[k];
+        let oldPlayer;
+        if (state == null || state.players == null || (oldPlayer = state.players[k]) == null) {
+            newPlayer.lastPos = newPlayer.pos;
+        //let oldPlayer = state.players[k];
+
+        } else
+            newPlayer.lastPos = oldPlayer.pos;
+        m.players[k] = newPlayer;
+    }
+
+    // Camera
+    /*if (!freeCam) {
+        var intpPos = getInterpolatedPos(player.lastPos, player.pos);
+        camX = player.pos.x;
+        camY = player.pos.y;
+    }*/
 
     // Set entities
     state = m;

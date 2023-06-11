@@ -408,6 +408,7 @@ var debug;
 var censor;
 
 var darkMode;
+var playerInterpolation;
 
 function loadSettings() {
     othercontrols = [
@@ -435,6 +436,7 @@ function loadSettings() {
     blocked = localStorage.getItem("blocked") ? localStorage.getItem("blocked").split(" ") : [];
     debug = Boolean(localStorage.getItem("debug"));
     darkMode = Boolean(localStorage.getItem("dkmode"));
+    playerInterpolation = Boolean(localStorage.getItem("plrinterp"));
     if (debug) {
         show(posDiv);
         show(rateDiv);

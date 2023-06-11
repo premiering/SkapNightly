@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A Client for skap.io. Higher fps, HTML chat and more!">
         <!-- Discord Embed -->
-        <meta content="SkapClient" property="og:title">
-        <meta content="SkapClient - Made by NKY#5223" property="og:description">
+        <meta content="SkapNightly" property="og:title">
+        <meta content="a SkapClient fork" property="og:description">
         <meta content="https://www.youtube.com/watch?v=dQw4w9WgXcQ" property="og:url">
         <meta content="https://nky5223.github.io/SkapClient/skap.ico" property="og:image">
         <meta content="#2080FF" name="theme-color">
@@ -34,6 +34,8 @@
             <h1>Settings</h1>
             <hr>
             <h3>Visual options</h3>
+            <label for="plrinterp">Player interpolation (makes players move smoother)</label><input type="checkbox" id="plrinterpbtn">
+            <br><br>
             <label for="dkmode">In game dark mode</label><input type="checkbox" id="dkmodebtn">
             <br><br>
             <label for="debug">Debug Mode (fps, pos, vel etc.):</label><input type="checkbox" id="debug">
@@ -403,7 +405,7 @@
         </div>
         <div id="loginDiv" class="hidden">
             <h2 id="logo" class="noselect" style="color: rgb(125, 74, 190); margin: 0px;">skap-nightly</h1>
-            <h4 class="noselect" style="color: rgb(100, 100, 100); margin: 10px; margin-bottom: 16px; font-weight: 600;">a <a href="https://nky5223.github.io/SkapClient/">skapclient</a> fork meant for ease of use, customizability, and looks.</h2>
+            <h4 id="desc" class="noselect" style="color: rgb(100, 100, 100); margin: 10px; margin-bottom: 16px; font-weight: 600;">a <a href="https://nky5223.github.io/SkapClient/">skapclient</a> fork meant for ease of use, customizability, and looks.</h2>
             <div id="loginData">
                 <form id="loginForm" action="javascript:void(0)" method="post">
                     <input id="username" class="login-input" value="" placeholder="Username" autocomplete="username"><br>

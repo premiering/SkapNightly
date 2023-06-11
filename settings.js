@@ -141,3 +141,13 @@ darkModeBtn.addEventListener("input", () => {
         localStorage.removeItem("dkmode");
     }
 });
+
+const plrInterpBtn = document.getElementById("plrinterpbtn");
+plrInterpBtn.checked = localStorage.getItem("plrinterp");
+plrInterpBtn.addEventListener("input", () => {
+    if (plrInterpBtn.checked) {
+        localStorage.setItem("plrinterp", "yes");
+    } else {
+        localStorage.removeItem("plrinterp");
+    }
+});

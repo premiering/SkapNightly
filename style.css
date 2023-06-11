@@ -19,6 +19,13 @@ body {
     color: #ffffff;
 }
 
+#logo {
+    font-weight: 500;
+}
+#desc {
+    font-weight: 500;
+}
+
 body.scroll {
     overflow: auto;
 }

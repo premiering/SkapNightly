@@ -6,6 +6,9 @@
  * @property {Object} pos
  * @property {number} pos.x
  * @property {number} pos.y
+ * @property {Object} lastPos
+ * @property {number} lastPos.x
+ * @property {number} lastPos.y
  * @property {Object} size
  * @property {number} size.x
  * @property {number} size.y
@@ -38,6 +41,9 @@
  * @property {Object} pos
  * @property {number} pos.x
  * @property {number} pos.y
+ * @property {Object} lastPos
+ * @property {number} lastPos.x
+ * @property {number} lastPos.y
  * rotating >:(
  * @property {number} angle
  * snek >:(
@@ -49,6 +55,9 @@
  * @property {Object} pos
  * @property {number} pos.x
  * @property {number} pos.y
+ * @property {Object} lastPos
+ * @property {number} lastPos.x
+ * @property {number} lastPos.y
  * @property {Object} vel
  * @property {number} vel.x
  * @property {number} vel.y
@@ -120,6 +129,24 @@ function render() {
     if (freeCam) {
         camX += camSpeed / camScale * (keysDown.has(othercontrols[6]) - keysDown.has(othercontrols[4]));
         camY += camSpeed / camScale * (keysDown.has(othercontrols[5]) - keysDown.has(othercontrols[3]));
+    } else {
+        if (state == null) {
+            camX = 0;
+            camY = 0;
+            return;
+        }
+
+        let player = state.players[state.infos.id];
+        if (!playerInterpolation) {
+            camX = player.pos.x;
+            camY = player.pos.y;
+        } else {
+            var intpPos = getInterpolatedPos(player.lastPos, player.pos);
+            //camX = player.pos.x;
+            //camY = player.pos.y;
+            camX = intpPos.x;
+            camY = intpPos.y;
+        }
     }
 
     canvas.width = window.innerWidth;
@@ -837,6 +864,7 @@ function renderParticles() {
     for (let p of particles.jetpack) {
         ctx.fillStyle = `hsl(${p.hue},${p.s}%,50%)`;
         ctx.globalAlpha = p.o;
+        console.log(p);
         ctx.fillRect(canvas.width / 2 + camScale * (p.x - p.w / 2 - camX), canvas.height / 2 + camScale * (p.y - p.h / 2 - camY), p.w * camScale, p.h * camScale);
     }
     for (let p of particles.trail) {
@@ -862,6 +890,20 @@ function renderTurrets() {
     }
 }
 
+//o lastPos, n newPos 
+function getInterpolatedPos(o, n) {
+    //Player interpolation
+    const tickTime = 1000/30;//1000ms over 30 ticks a second
+    var pos = {...n};//Copy the player pos, dont use ref
+    var progress = (Date.now() - lastUpdate) / tickTime;
+    if (o != n) {
+        pos.x = o.x + (n.x - o.x) * progress;
+        pos.y = o.y + (n.y - o.y) * progress;
+        //console.log("old position: " + Object.entries(p.lastPos) + ", new position: " + Object.entries(p.pos) + ", interpolated pos: " + Object.entries(pos) + ", progress: " + progress);
+    }
+    return pos;
+}
+
 function renderPlayers() {
     for (let i in state.players) {
         let p = state.players[i];
@@ -878,8 +920,24 @@ function renderPlayers() {
         if (RENDER_SKIN) skin = RENDER_SKIN;
         const isWolfie = (skin === "wolfie" || skin === "wolfer" || skin === "wolfy");
 
+        //Player interpolation
+        /*const tickTime = 1000/30;//1000ms over 30 ticks a second
+        var pos = {...p.pos};//Copy the player pos, dont use ref
+        var progress = (Date.now() - lastUpdate) / tickTime;
+        if (p.pos != p.lastPos) {
+            pos.x = p.lastPos.x + (p.pos.x - p.lastPos.x) * progress;
+            pos.y = p.lastPos.y + (p.pos.y - p.lastPos.y) * progress;
+            console.log("old position: " + Object.entries(p.lastPos) + ", new position: " + Object.entries(p.pos) + ", interpolated pos: " + Object.entries(pos) + ", progress: " + progress);
+        }*/
+        var pos;
+        if (playerInterpolation)
+            pos = getInterpolatedPos(p.lastPos, p.pos);
+        else
+            pos = p.pos;
+
         ctx.save();
-        ctx.translate(canvas.width / 2 + camScale * (p.pos.x - camX), canvas.height / 2 + camScale * (p.pos.y - camY));
+        //ctx.translate(canvas.width / 2 + camScale * (p.pos.x - camX), canvas.height / 2 + camScale * (p.pos.y - camY));
+        ctx.translate(canvas.width / 2 + camScale * (pos.x - camX), canvas.height / 2 + camScale * (pos.y - camY));
         ctx.rotate(p.gravDir / 2 * Math.PI);
         ctx.beginPath();
         // Body
