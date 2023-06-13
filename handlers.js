@@ -148,7 +148,7 @@ ws.addEventListener("message", e => {
                     catch (err) { console.error(err) }
                     window.requestAnimationFrame(run);
                 })();
-                customAlert("Joined game");
+                customAlert("Joined game. Press escape to join a new game, or change settings.", 20);
             }
             break;
         case "message":

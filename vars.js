@@ -743,7 +743,7 @@ loadSettings();
 /**
  * Custom Alert UwU <3
  * @param {string} s The message
- * @param {number} t Fade time
+ * @param {number} t Fade time with who knows what time unit
  */
 function customAlert(s, t = 1) {
     alertDiv.innerHTML = s;
