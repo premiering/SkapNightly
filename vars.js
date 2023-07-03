@@ -331,8 +331,7 @@ const renderSettings = {
             loadImage("https://skap.io/textures/powers/lantern.svg"),
             loadImage("https://skap.io/textures/powers/ghost.svg"),
             loadImage("https://skap.io/textures/powers/frost.svg"),
-            loadImage("https://skap.io/textures/powers/shell.svg"),
-            loadImage("none.svg"),
+            loadImage("https://skap.io/textures/powers/shell.svg")
         ],
         skins: {
             /*NKY: loadImage("skins/NKY.png"),
