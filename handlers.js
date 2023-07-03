@@ -350,7 +350,7 @@ ws.addEventListener("message", e => {
 });*/
 
 function updatePowerIcon(html, power) {
-    if (power == -1 || power == null)
+    if (power == -1 || power == null || renderSettings.textures.powers[power] == null)
         html.src = renderSettings.textures.enemies.none.src;
     else
         html.src = renderSettings.textures.powers[power].src;
