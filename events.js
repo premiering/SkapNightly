@@ -233,6 +233,12 @@ Owner:<ul>
         e.stopPropagation();
     });*/
     createGameMenuBtn.addEventListener("click", () => {
+        if (inGame) {
+            customAlert("Creating games is not supported while in game, Ravel is a weird guy...", 20);
+
+            return;
+        }
+
         hide(gamesDiv);
         hide(loginDiv);
         show(createGameMenu);

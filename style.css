@@ -94,6 +94,7 @@ input[type=text], .login-input {
     background: #00000080;
     padding: 10px;
     opacity: 0;
+    z-index: 500;
 }
 #ws {
     position: absolute;

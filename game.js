@@ -713,6 +713,7 @@ function togglePauseMenu() {
         hide(createGameMenu);
         hide(pauseGameDiv);
         hide(settingsDiv);
+        hide(gamesDiv);
         showingSettings = false;
         loadSettings();
     }
