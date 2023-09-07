@@ -708,7 +708,6 @@ function togglePauseMenu() {
     if (pauseMenuOpen) {
         show(loginDiv);
         show(pauseGameDiv);
-        hide(logout);
     } else {
         hide(loginDiv);
         hide(createGameMenu);

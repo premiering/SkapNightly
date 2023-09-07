@@ -106,6 +106,7 @@ ws.addEventListener("message", e => {
             if (msg.m) customAlert("Could not join game");
             else {
                 inGame = true;
+                logoutDiv.removeChild(logout);
                 if (pauseMenuOpen)
                     togglePauseMenu();
 
