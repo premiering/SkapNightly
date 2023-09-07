@@ -107,6 +107,7 @@ ws.addEventListener("message", e => {
             else {
                 inGame = true;
                 logoutDiv.removeChild(logout);
+                logoutDiv.removeChild(play);
                 if (pauseMenuOpen)
                     togglePauseMenu();
 
