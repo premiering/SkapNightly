@@ -536,7 +536,7 @@ function message(msg, force = false) {
                 ? "msgMsg"
                 : ["guestMsg", "userMsg", "modMsg"][msg.r + 1];
 
-    //Add rainbow styling for devs, remove profanity, add <a> for links, and add timestamp
+    //Add rainbow styling for devs, remove profanity, add <a> for links, and add timestamp (holy NKY's spaghetti)
     p.innerHTML = `<span class="
     ${msg.r === -2
             ? ""
@@ -564,7 +564,7 @@ function message(msg, force = false) {
                         ? "wishmsg"
                         : msg.s === "porooklturdle"
                             ? "modMsg"
-                            : ""
+                            : msg.s === "kleb" ? "modMsg" : ""
         }">
         ${force
             ? msg.s
