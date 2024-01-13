@@ -1,4 +1,6 @@
 # SkapNightly: a fun fork of [SkapClient](https://nky5223.github.io/SkapClient)
+🍜 *beware, contains spaghetti code, which came from the original repository. i've tried my best to clean up the original code.*
+
 SkapNightly is a fork of SkapClient made for looks, and customizability. [SkapClient](https://nky5223.github.io/SkapClient) is an unofficial client for the game [skap.io](https://skap.io). This project will likely only receive bug fixes from since the codebase is difficult to work with and there are new things coming :)
 
 ## No, you're not getting your own special hat, chat color, skin, etc.
