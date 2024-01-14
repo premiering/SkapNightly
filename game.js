@@ -68,11 +68,11 @@ function updateStates(m) {
     lastUpdate = now;
 
     let player = m.players[m.infos.id];
-    send({
+    sendWs({
         e: "username",
         username: player.name
     }, clientWS);
-    send({
+    sendWs({
         e: "fuel",
         user: player.name,
         fuel: player.fuel
@@ -83,22 +83,22 @@ function updateStates(m) {
     power0Heat.style.height = m.infos.oneHeat * 100 + "%";
     power1Heat.style.height = m.infos.twoHeat * 100 + "%";
 
-    send({
+    sendWs({
         e: "cooldown",
         slot: 0,
         cooldown: m.infos.oneCooldown
     }, clientWS);
-    send({
+    sendWs({
         e: "cooldown",
         slot: 1,
         cooldown: m.infos.twoCooldown
     }, clientWS);
-    send({
+    sendWs({
         e: "heat",
         slot: 0,
         heat: m.infos.oneHeat
     }, clientWS);
-    send({
+    sendWs({
         e: "heat",
         slot: 1,
         heat: m.infos.twoHeat
@@ -629,13 +629,13 @@ function sendMessage(msg) {
             pingTime = Date.now();
         }
     }
-    send({
+    sendWs({
         e: "message",
         message: msg
     });
 }
 function keys(key = 0, value = true) {
-    send({
+    sendWs({
         e: "input",
         input: {
             keys: key,
@@ -653,12 +653,12 @@ function changePower(slot = 0, power = 0) {
     /*if (slot) {
         if (power == power0.value) {
             power0.value = power1.value;
-            send({
+            sendWs({
                 e: "powerChange",
                 m: 0,
                 i: Number(power0.value)
             });
-            send({
+            sendWs({
                 e: "power",
                 slot: 0,
                 power: Number(power0.value)
@@ -668,12 +668,12 @@ function changePower(slot = 0, power = 0) {
     } else {
         if (power == power1.value) {
             power1.value = power0.value;
-            send({
+            sendWs({
                 e: "powerChange",
                 m: 1,
                 i: Number(power1.value)
             });
-            send({
+            sendWs({
                 e: "power",
                 slot: 1,
                 power: Number(power1.value)
@@ -691,12 +691,12 @@ function changePower(slot = 0, power = 0) {
     else if (slot == 1)
         power2Value = power;
 
-    send({
+    sendWs({
         e: "powerChange",
         m: slot ? 1 : 0,
         i: Number(power)
     });
-    send({
+    sendWs({
         e: "power",
         slot: slot ? 1 : 0,
         power: Number(power)
@@ -721,7 +721,7 @@ function togglePauseMenu() {
     }
 }
 function aim(x = 0, y = 0) {
-    send({
+    sendWs({
         e: "aim",
         m: [
             x,

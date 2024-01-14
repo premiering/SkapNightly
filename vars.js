@@ -899,7 +899,7 @@ function getToken(func, onerr = console.error) {
 /**
  * @param {Object | Uint8Array} obj 
  */
-function send(obj, e = ws) {
+function sendWs(obj, e = ws) {
     if (e.readyState === e.OPEN) {
         if (obj instanceof Uint8Array) e.send(obj);
         else e.send(msgpack.encode(obj));

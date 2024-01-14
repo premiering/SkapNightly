@@ -14,7 +14,7 @@ ws.addEventListener("message", e => {
                 }
                 if (msg.t.startsWith("Logged in as ")) {
                     user = msg.t.slice(13);
-                    send({
+                    sendWs({
                         e: "login",
                         username: user
                     }, clientWS);
@@ -46,19 +46,19 @@ ws.addEventListener("message", e => {
                 div.innerHTML = `<h2>${g.name}<br>${g.players} players</h2><h5>${g.id}</h5><p>${String(g.mapName).safe()} by ${String(g.creator).safe()}</p>`;
                 div.addEventListener("click", () => {
                     if (g.private) {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id,
                             p: prompt("Password?")
                         });
                     } else {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id
                         });
                     }
                     id = g.id;
-                    send({
+                    sendWs({
                         e: "join",
                         id: g.id,
                         name: g.name
@@ -70,13 +70,13 @@ ws.addEventListener("message", e => {
                 if (autojoinGameId === g.id) {
                     customAlert("Joining room from URL...");
                     if (g.private) {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id,
                             p: autojoinGamePassword ? autojoinGamePassword : prompt("Password?")
                         });
                     } else {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id
                         });
@@ -85,13 +85,13 @@ ws.addEventListener("message", e => {
                 if (autojoinGameName === g.name) {
                     customAlert("Joining room from URL...");
                     if (g.private) {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id,
                             p: autojoinGamePassword ? autojoinGamePassword : prompt("Password?")
                         });
                     } else {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id
                         });
@@ -122,13 +122,13 @@ ws.addEventListener("message", e => {
                     if (msg.i.powers.includes(parseInt(el.dataset.power))) show(el);
                     else hide(el);
                 }
-                send({
+                sendWs({
                     e: "power",
                     slot: 0,
                     //power: power0.value = msg.i.powers[0]
                     power: power1Value = msg.i.powers[0]
                 }, clientWS);
-                send({
+                sendWs({
                     e: "power",
                     slot: 1,
                     power: power2Value = msg.i.powers[1]
@@ -326,7 +326,7 @@ ws.addEventListener("message", e => {
                 let img = document.createElement("img");
                 img.src = `https://skap.io/textures/hats/${h}.png`;
                 img.addEventListener("click", () => {
-                    send({
+                    sendWs({
                         e: "hatChange",
                         c: h
                     });

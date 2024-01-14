@@ -136,12 +136,12 @@ function onClientClose() {
 };
 function onClientOpen() {
     console.log("Client WS connected");
-    send({
+    sendWs({
         e: "power",
         slot: 0,
         power: Number(power0.value)
     }, clientWS);
-    send({
+    sendWs({
         e: "power",
         slot: 1,
         power: Number(power1.value)
