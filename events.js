@@ -1,4 +1,4 @@
-ws.addEventListener("open", () => {
+webbysocket.addEventListener("open", () => {
     customAlert("Connected to skap.io servers.", 5);
 
     canSend = true;
@@ -53,7 +53,7 @@ ws.addEventListener("open", () => {
         sendWs({//Invalidates session
             e: "logout"
         });
-        //ws.close();
+        //webbysocket.close();
         //connect();
     });
     guest.addEventListener("click", () => {
