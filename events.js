@@ -6,7 +6,7 @@ webbysocket.addEventListener("open", () => {
         let sessionCookie = document.cookie.split(";").filter(cookie => cookie.startsWith("session="));
         if (sessionCookie.length) {
             // `{"e":"session","cookie":"${sessionCookie[0].slice(8)}"}`
-            send({
+            sendWs({
                 e: "session",
                 cookie: sessionCookie[0].slice(8)
             });
@@ -22,7 +22,7 @@ webbysocket.addEventListener("open", () => {
     });
     login.addEventListener("click", () => {
         getToken(token => {
-            send({
+            sendWs({
                 e: "login",
                 m: {
                     username: username.value,
@@ -33,7 +33,7 @@ webbysocket.addEventListener("open", () => {
         });
     });
     changingRoomBtn.addEventListener("click", () => {
-        send({
+        sendWs({
             e: "getStyle"
         })
         hide(logoutDiv);
@@ -44,13 +44,13 @@ webbysocket.addEventListener("open", () => {
         show(logoutDiv);
     });
     playerColor.addEventListener("input", () => {
-        send({
+        sendWs({
             e: "colorChange",
             c: hexToArr(playerColor.value)
         });
     });
     logout.addEventListener("click", () => {
-        send({//Invalidates session
+        sendWs({//Invalidates session
             e: "logout"
         });
         //webbysocket.close();
@@ -58,7 +58,7 @@ webbysocket.addEventListener("open", () => {
     });
     guest.addEventListener("click", () => {
         getToken(token => {
-            send({
+            sendWs({
                 e: "guest",
                 t: token
             });
@@ -66,7 +66,7 @@ webbysocket.addEventListener("open", () => {
     });
     register.addEventListener("click", () => {
         getToken(token => {
-            send({
+            sendWs({
                 e: "register",
                 m: {
                     username: username.value,
@@ -76,7 +76,7 @@ webbysocket.addEventListener("open", () => {
         });
     });
     play.addEventListener("click", () => {
-        send({
+        sendWs({
             e: "games"
         });
     });
@@ -85,7 +85,7 @@ webbysocket.addEventListener("open", () => {
         show(loginDiv);
     });
     refresh.addEventListener("click", () => {
-        send({
+        sendWs({
             e: "games"
         });
     });
@@ -206,7 +206,7 @@ Owner:<ul>
                 } else if (msg.startsWith("/unflip")) {
                     sendMessage(msg.slice(8) + " ┬─┬ ノ( ゜-゜ノ)");
                 } else if (msg.startsWith("/msg")) {
-                    send(msgpack.encode({
+                    sendWs(msgpack.encode({
                         e: "msg",
                         message: Object.entries(emojiList).reduce((m, [i, { char, regex }]) => m.replace(regex, char), msg.slice(5))
                     }), clientWS);
@@ -233,6 +233,12 @@ Owner:<ul>
         e.stopPropagation();
     });*/
     createGameMenuBtn.addEventListener("click", () => {
+        if (inGame) {
+            customAlert("Creating games is not supported while in game, Ravel is a weird guy...", 20);
+
+            return;
+        }
+
         hide(gamesDiv);
         hide(loginDiv);
         show(createGameMenu);
@@ -281,7 +287,7 @@ Owner:<ul>
                     s: speedrun.checked
                 };
                 try {
-                    send({
+                    sendWs({
                         e: "createGame",
                         s: settings,
                         j: JSON.parse(e)
@@ -301,7 +307,7 @@ Owner:<ul>
                 u: uploadMap.checked,
                 s: speedrun.checked
             };
-            send({
+            sendWs({
                 e: "createGame",
                 s: settings
             });

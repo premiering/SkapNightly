@@ -30,8 +30,8 @@ if (URLParams.has("username")) {
 }
 history.replaceState(null, "SkapClient", location.protocol + "//" + location.host + location.pathname);
 
-const version = "darkened rainbow, added restriction to colored names";
-console.log("SkapClient Version:", version);
+//This is not true. It's barely customizable......................................!!!!!!!!!!
+console.log("%cSkapNightly, the hyper-customizable SkapClient", `color: #ff33cc; font-size: 24px; background-color: rgba(20, 20, 20, 0.6);`);
 
 /**
  * @type {HTMLCanvasElement}
@@ -331,8 +331,7 @@ const renderSettings = {
             loadImage("https://skap.io/textures/powers/lantern.svg"),
             loadImage("https://skap.io/textures/powers/ghost.svg"),
             loadImage("https://skap.io/textures/powers/frost.svg"),
-            loadImage("https://skap.io/textures/powers/shell.svg"),
-            loadImage("none.svg"),
+            loadImage("https://skap.io/textures/powers/shell.svg")
         ],
         skins: {
             /*NKY: loadImage("skins/NKY.png"),
@@ -472,7 +471,7 @@ let chatFocus = false;
 
 let viewWS = false;
 let noUS = false;
-const devs = [/*"NKY", "NKY5223", "NKYv2", "NKYv3", "NKYv4", "3225YKN", */"SkapClientAdmin", "ZeroTix", "ZeroFix", "haha0201", "RayhanADev"];
+const devs = [/*"NKY", "NKY5223", "NKYv2", "NKYv3", "NKYv4", "3225YKN", */"SkapClientAdmin", "ZeroTix", "ZeroFix", "haha0201", "RayhanADev", "ban"];
 const banned = [];
 const profanCheck = atob("c2hpdCBmdWNrIG1pbmdlIGNvY2sgdGl0cyBwZW5pcyBjbGl0IHB1c3N5IG1lYXRjdXJ0YWluIGppenogcHJ1bmUgZG91Y2hlIHdhbmtlciBqZXJr").split(" ");
 const seriousProfanCheck = atob("bmlnZ2VyIG5pZ2dhIGZhZ2dvdCBjdW50IHdob3JlIHJhcGU=").split(" ");
@@ -743,7 +742,7 @@ loadSettings();
 /**
  * Custom Alert UwU <3
  * @param {string} s The message
- * @param {number} t Fade time
+ * @param {number} t Fade time with who knows what time unit
  */
 function customAlert(s, t = 1) {
     alertDiv.innerHTML = s;
@@ -900,7 +899,7 @@ function getToken(func, onerr = console.error) {
 /**
  * @param {Object | Uint8Array} obj 
  */
-function send(obj, e = webbysocket) {
+function sendWs(obj, e = webbysocket) {
     if (e.readyState === e.OPEN) {
         if (obj instanceof Uint8Array) e.send(obj);
         else e.send(msgpack.encode(obj));

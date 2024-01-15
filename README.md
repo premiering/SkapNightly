@@ -1,44 +1,17 @@
-# SkapClient
+# SkapNightly: a fun fork of [SkapClient](https://nky5223.github.io/SkapClient)
+🍜 *beware, contains spaghetti code, which came from the original repository. i've tried my best to clean up the original code.*
 
-[SkapClient](https://nky5223.github.io/SkapClient) is an unofficial client for [skap](https://skap.io).
+SkapNightly is a fork of SkapClient made for looks, and customizability. [SkapClient](https://nky5223.github.io/SkapClient) is an unofficial client for the game [skap.io](https://skap.io). This project will likely only receive bug fixes from since the codebase is difficult to work with and there are new things coming :)
 
-## Files:
+## No, you're not getting your own special hat, chat color, skin, etc.
+Accounts which have special cosmetics in game are staying the same as [SkapClient](https://nky5223.github.io/SkapClient). No one else is getting anything special.
 
-```yaml
-master (root)
- ├─ index.html - The index HTML
- ├─ style.css - The CSS for index.html
- ├─ main.js - The main JS file, responsible for handling the WebSocket
- ├─ vars.js - Variable declaration
- ├─ render.js - Has the render() function
- ├─ updateStates.js - updateStates() function
- ├─ Textures - A Directory of all Textures
- │   ├─ enemies - Enemy Textures
- │   │   └─ <enemy name>.svg - <enemy name>'s texture
- │   └─ skins - About to be removed
- ├─ settings - /settings
- │   ├─ index.html - Settings' index.html
- │   ├─ style.css - Styling
- │   └─ script.js - Script
- ├─ help - /help
- │   ├─ index.html - index.html
- │   └─ style.css - Styling
- ├─ editor - hard
- │   ├─ index.html - Index
- │   ├─ style.css - Styling
- │   ├─ main.js - Main Script
- │   ├─ render.js - Modified Render
- │   ├─ vars.js - Vars
- │   ├─ toJSON.js - Styling
- │   └─ create_____.js - "modular" shit
- │
- │
- ├─ sha256.js - sha256() function
- ├─ keysDown.js - keysDown Set (used to tell what keys are down)
- ├─ skap.ico - The favicon
- ├─ ping.mp3 - Ping sound
- ├─ discord.png - Discord Logo
- ├─ github.png - Github Logo
- ├─ README.md - This file
- └─ ClientTest.json - A SkapMap used to test entities (made by haha0201)
-```
+## Project Structure
+The repo contains the static files of the game client. The code is very messy and unreadable, and I was only to add small refactors to the original codebase. For testing, you can use any simple static server program from Node, Python, etc. Unfortunately, due to the recaptcha, any forks of this project or the original SkapClient will not work unless the creator of skap.io adds your link to his recaptcha.
+
+## Problems that are server related, not client-side
+- Unable to leave the game.
+- Unable to create games after joining a room.
+- Unable to change hats during the session (refresh/tab) you recieved them.
+- Unable to change player color without changing worlds.
+- Staying logged in after logging out while in game.

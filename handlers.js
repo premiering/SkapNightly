@@ -14,7 +14,7 @@ webbysocket.addEventListener("message", e => {
                 }
                 if (msg.t.startsWith("Logged in as ")) {
                     user = msg.t.slice(13);
-                    send({
+                    sendWs({
                         e: "login",
                         username: user
                     }, clientWS);
@@ -46,19 +46,19 @@ webbysocket.addEventListener("message", e => {
                 div.innerHTML = `<h2>${g.name}<br>${g.players} players</h2><h5>${g.id}</h5><p>${String(g.mapName).safe()} by ${String(g.creator).safe()}</p>`;
                 div.addEventListener("click", () => {
                     if (g.private) {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id,
                             p: prompt("Password?")
                         });
                     } else {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id
                         });
                     }
                     id = g.id;
-                    send({
+                    sendWs({
                         e: "join",
                         id: g.id,
                         name: g.name
@@ -70,13 +70,13 @@ webbysocket.addEventListener("message", e => {
                 if (autojoinGameId === g.id) {
                     customAlert("Joining room from URL...");
                     if (g.private) {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id,
                             p: autojoinGamePassword ? autojoinGamePassword : prompt("Password?")
                         });
                     } else {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id
                         });
@@ -85,13 +85,13 @@ webbysocket.addEventListener("message", e => {
                 if (autojoinGameName === g.name) {
                     customAlert("Joining room from URL...");
                     if (g.private) {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id,
                             p: autojoinGamePassword ? autojoinGamePassword : prompt("Password?")
                         });
                     } else {
-                        send({
+                        sendWs({
                             e: "join",
                             g: g.id
                         });
@@ -106,6 +106,8 @@ webbysocket.addEventListener("message", e => {
             if (msg.m) customAlert("Could not join game");
             else {
                 inGame = true;
+                logoutDiv.removeChild(logout);
+                logoutDiv.removeChild(play);
                 if (pauseMenuOpen)
                     togglePauseMenu();
 
@@ -120,13 +122,13 @@ webbysocket.addEventListener("message", e => {
                     if (msg.i.powers.includes(parseInt(el.dataset.power))) show(el);
                     else hide(el);
                 }
-                send({
+                sendWs({
                     e: "power",
                     slot: 0,
                     //power: power0.value = msg.i.powers[0]
                     power: power1Value = msg.i.powers[0]
                 }, clientWS);
-                send({
+                sendWs({
                     e: "power",
                     slot: 1,
                     power: power2Value = msg.i.powers[1]
@@ -148,7 +150,7 @@ webbysocket.addEventListener("message", e => {
                     catch (err) { console.error(err) }
                     window.requestAnimationFrame(run);
                 })();
-                customAlert("Joined game");
+                customAlert("Joined game. Press escape to join a new game, or change settings.", 20);
             }
             break;
         case "message":
@@ -324,7 +326,7 @@ webbysocket.addEventListener("message", e => {
                 let img = document.createElement("img");
                 img.src = `https://skap.io/textures/hats/${h}.png`;
                 img.addEventListener("click", () => {
-                    send({
+                    sendWs({
                         e: "hatChange",
                         c: h
                     });
@@ -350,7 +352,7 @@ webbysocket.addEventListener("message", e => {
 });*/
 
 function updatePowerIcon(html, power) {
-    if (power == -1 || power == null)
+    if (power == -1 || power == null || renderSettings.textures.powers[power] == null)
         html.src = renderSettings.textures.enemies.none.src;
     else
         html.src = renderSettings.textures.powers[power].src;
