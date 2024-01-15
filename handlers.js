@@ -1,6 +1,6 @@
 var inGame = false;
 
-ws.addEventListener("message", e => {
+webbysocket.addEventListener("message", e => {
     let msg = msgpack.decode(new Uint8Array(e.data));
     if (viewWS && (!noUS || msg.e !== "updateStates")) wsDiv.innerHTML = JSON.stringify(msg);
 
@@ -340,7 +340,7 @@ ws.addEventListener("message", e => {
             break;
     }
 });
-/*ws.addEventListener("close", e => {
+/*webbysocket.addEventListener("close", e => {
     canSend = false;
     hide(gameDiv);
     hide(createGameMenu);

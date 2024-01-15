@@ -29,7 +29,7 @@ clientWS.init();
 clientWS.onmessage = onClientMessage;
 clientWS.onopen = onClientOpen;
 clientWS.onclose = onClientClose;
-var ws;
+var webbysocket;
 
 var pauseMenuOpen = false;
 
@@ -37,8 +37,8 @@ var power1Value;
 var power2Value;
 
 function connect() {
-    ws = new WebSocket("wss://skap.io");
-    ws.binaryType = "arraybuffer";
+    webbysocket = new WebSocket("wss://skap.io");
+    webbysocket.binaryType = "arraybuffer";
 }
 
 connect();
@@ -726,7 +726,7 @@ function aim(x = 0, y = 0) {
         ]
     });
 }
-ws.addEventListener("close", () => {
+webbysocket.addEventListener("close", () => {
     canSend = false;
     //hide(gameDiv);
     //document.title = "Disconnected";
