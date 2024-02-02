@@ -13,10 +13,10 @@
     let fullSource = "";
     for (let s in scripts) {
         await fetch(scripts[s]).then(function(response) {
-          response.text().then(function(text) {
-            fullSource += text;
-          });
-        });
+          return response.text();
+        }).then(function(text) {
+          fullSource += text;
+        });;
     }
     eval("(function() {" + fullSource + "})();");
 })();

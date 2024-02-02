@@ -542,22 +542,6 @@ function message(msg, force = false) {
             ? ""
             : devs.includes(msg.s)
                 ? "devMsg"
-                // : msg.s === "2121212121212"
-                //     ? "msg2121"
-                //     : ["wolfie", "wolfer", "wolfy"].includes(msg.s)
-                //         ? "wolfiemsg"
-                //         : ["OwO", "shrekismyson", "shrekismyson1", "shrekismyson2", "shrekismyson3", "shrekismyson4", "shrekismyson5", "shrexcellent", "shrekkamend", "shrektacular", "shrekingball", "shrekwashiss9z", "shrexpected", "shrexcited", "shrextreme", "shrekcepted", "fathershrek"].includes(msg.s)
-                //             ? "shrekmsg"
-                //             : msg.s === "HalOfManage"
-                //                 ? "halmanageMsg"
-                //                 : msg.s === "Whiz"
-                //                     ? "whizMsg"
-                //                     : msg.s === "Frog"
-                //                         ? "frogMsg"
-                //                         : msg.s === "Imaduck"
-                //                             ? "imaduckMsg"
-                //                             : msg.s === "drakerip"
-                //                                 ? "drakeMsg"
                 : msg.s === "Whiz"
                     ? "whizmsg"
                     : msg.s === "Wish"
