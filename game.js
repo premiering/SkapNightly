@@ -546,7 +546,7 @@ function message(msg, force = false) {
                     ? "whizmsg"
                     : msg.s === "Wish"
                         ? "wishmsg"
-                        : msg.s === "Mohy" && "0123456789abcd".includes(SHA256(msg.s + Date.now().toString().slice(0, 7))[0])
+                        : msg.s === "Mohy"
                             ? "modMsg"
                             : ""
         }">
