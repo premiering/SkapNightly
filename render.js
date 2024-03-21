@@ -956,7 +956,7 @@ function renderPlayers() {
         ctx.rotate(p.gravDir / 2 * Math.PI);
         ctx.beginPath();
         // Body
-        if (skin in renderSettings.textures.skins && !died && !freeze) {
+        if (renderSettings.textures.skins.hasOwnProperty(skin) && !died && !freeze) {
             ctx.drawImage(renderSettings.textures.skins[skin], -p.radius * camScale, -p.radius * camScale, 2 * p.radius * camScale, 2 * p.radius * camScale);
         }
         if (isWolfie) {
