@@ -132,11 +132,11 @@ function onClientMessage(e) {
 function onClientClose() {
     customAlert("Client WebSocket closed, reconnecting in 3 seconds...", 3);
     for (let name in SkapClientPlayers) delete SkapClientPlayers[name];
-    setTimeout(clientWS.init.bind(clientWS), 3000);
+    // setTimeout(clientWS.init.bind(clientWS), 3000);
 };
 function onClientOpen() {
     console.log("Client WS connected");
-    sendWs({
+    /* sendWs({
         e: "power",
         slot: 0,
         power: Number(power0.value)
@@ -145,5 +145,5 @@ function onClientOpen() {
         e: "power",
         slot: 1,
         power: Number(power1.value)
-    }, clientWS);
+    }, clientWS); */
 };

@@ -24,11 +24,11 @@ document.addEventListener("keyup", e => {
     keysDown.delete(e.key?.toLowerCase());
 });
 
-const clientWS = new ClientWS("wss://skapclientserver.nky5223.repl.co");
+/* const clientWS = new ClientWS("wss://skapclientserver.nky5223.repl.co");
 clientWS.init();
 clientWS.onmessage = onClientMessage;
 clientWS.onopen = onClientOpen;
-clientWS.onclose = onClientClose;
+clientWS.onclose = onClientClose; */
 var webbysocket;
 
 var pauseMenuOpen = false;
@@ -39,6 +39,7 @@ var power2Value;
 function connect() {
     webbysocket = new WebSocket("wss://skap.io");
     webbysocket.binaryType = "arraybuffer";
+    webbysocket.onclose = () => console.error("websocket closed");
 }
 
 connect();
@@ -68,7 +69,7 @@ function updateStates(m) {
     lastUpdate = now;
 
     let player = m.players[m.infos.id];
-    sendWs({
+    /* sendWs({
         e: "username",
         username: player.name
     }, clientWS);
@@ -76,14 +77,14 @@ function updateStates(m) {
         e: "fuel",
         user: player.name,
         fuel: player.fuel
-    }, clientWS);
+    }, clientWS); */
 
     power0CD.style.height = (isNaN(m.infos.oneCooldown) ? 0 : m.infos.oneCooldown) * 100 + "%";
     power1CD.style.height = (isNaN(m.infos.twoCooldown) ? 0 : m.infos.twoCooldown) * 100 + "%";
     power0Heat.style.height = m.infos.oneHeat * 100 + "%";
     power1Heat.style.height = m.infos.twoHeat * 100 + "%";
 
-    sendWs({
+    /* sendWs({
         e: "cooldown",
         slot: 0,
         cooldown: m.infos.oneCooldown
@@ -102,7 +103,7 @@ function updateStates(m) {
         e: "heat",
         slot: 1,
         heat: m.infos.twoHeat
-    }, clientWS);
+    }, clientWS); */
 
     // Death/Freeze message
     if (player.states.includes("Died")) {
@@ -127,7 +128,7 @@ function updateStates(m) {
         const el = document.createElement("p");
         if (p[2]) el.classList.add("deadPlayerName");
         if (p[3]) el.classList.add("freezePlayerName");
-        if (p[0] in SkapClientPlayers) el.classList.add("skapclientPlayerName")
+        // if (p[0] in SkapClientPlayers) el.classList.add("skapclientPlayerName")
         el.innerHTML = p[0].safe() + ":&nbsp;" + p[1].safe();
         /*var color = [0, 0, 0];
         for (let [uuid, player] of Object.entries(m.players)) {
@@ -680,11 +681,11 @@ function changePower(slot = 0, power = 0) {
         m: slot ? 1 : 0,
         i: Number(power)
     });
-    sendWs({
+    /* sendWs({
         e: "power",
         slot: slot ? 1 : 0,
         power: Number(power)
-    }, clientWS);
+    }, clientWS); */
 
     updatePowerIcon(power0Img, power1Value);
     updatePowerIcon(power1Img, power2Value);

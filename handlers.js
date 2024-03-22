@@ -14,10 +14,10 @@ webbysocket.addEventListener("message", e => {
                 }
                 if (msg.t.startsWith("Logged in as ")) {
                     user = msg.t.slice(13);
-                    sendWs({
+                    /* sendWs({
                         e: "login",
                         username: user
-                    }, clientWS);
+                    }, clientWS); */
 
                     if (banned.includes(user)) {
                         ban("Hardcoded ban", Infinity);
@@ -58,11 +58,11 @@ webbysocket.addEventListener("message", e => {
                         });
                     }
                     id = g.id;
-                    sendWs({
+                    /* sendWs({
                         e: "join",
                         id: g.id,
                         name: g.name
-                    }, clientWS);
+                    }, clientWS) */;
                 });
                 gameListDiv.appendChild(div);
 
@@ -122,7 +122,7 @@ webbysocket.addEventListener("message", e => {
                     if (msg.i.powers.includes(parseInt(el.dataset.power))) show(el);
                     else hide(el);
                 }
-                sendWs({
+                /* sendWs({
                     e: "power",
                     slot: 0,
                     //power: power0.value = msg.i.powers[0]
@@ -133,7 +133,7 @@ webbysocket.addEventListener("message", e => {
                     slot: 1,
                     power: power2Value = msg.i.powers[1]
                     //power: power1.value = msg.i.powers[1]
-                }, clientWS);
+                }, clientWS); */
                 updatePowerIcon(power0Img, power1Value);
                 updatePowerIcon(power1Img, power2Value);
                 if (!isRendering) (function run() {
