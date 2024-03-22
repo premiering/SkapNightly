@@ -1,7 +1,7 @@
 // Loads the game scripts all at once
 (async function() {
     const scripts = [
-        "scsocket.js",
+        // "scsocket.js",
         "vars.js",
         "render.js",
         "sha256.js",

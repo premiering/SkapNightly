@@ -877,7 +877,7 @@ function renderParticles() {
     for (let p of particles.jetpack) {
         ctx.fillStyle = `hsl(${p.hue},${p.s}%,50%)`;
         ctx.globalAlpha = p.o;
-        let pos = {x: p.x - p.w / 2 - camX - (player.pos.x - player.lastPos.x), y: p.y - p.h / 2 - camY - (player.pos.y - player.lastPos.y)};
+        let pos = { x: p.x - p.w / 2 - camX - (player.pos.x - player.lastPos.x), y: p.y - p.h / 2 - camY - (player.pos.y - player.lastPos.y) };
         ctx.fillRect(canvas.width / 2 + camScale * pos.x, canvas.height / 2 + camScale * pos.y, p.w * camScale, p.h * camScale);
     }
     for (let p of particles.trail) {
@@ -906,8 +906,8 @@ function renderTurrets() {
 //o lastPos, n newPos 
 function getInterpolatedPos(o, n) {
     //Player interpolation
-    const tickTime = 1000/30;//1000ms over 30 ticks a second
-    var pos = {...n};//Copy the player pos, dont use ref
+    const tickTime = 1000 / 30;//1000ms over 30 ticks a second
+    var pos = { ...n };//Copy the player pos, dont use ref
     var progress = (Date.now() - lastUpdate) / tickTime;
     if (progress > 1)
         progress = 1;
@@ -927,7 +927,7 @@ function renderPlayers() {
         // Initiate hat
         let hat = renderSettings.textures.hats.none;
         if (RENDER_HAT) p.hat = RENDER_HAT;
-        if (p.hat in renderSettings.textures.hats) {
+        if (renderSettings.textures.hats.hasOwnProperty(p.hat)) {
             hat = renderSettings.textures.hats[p.hat];
         }
         // Skin?
@@ -963,15 +963,15 @@ function renderPlayers() {
             ctx.ellipse(p.radius * -0.105 * camScale, p.radius * 0.4 * camScale, p.radius * 0.557 * camScale, p.radius * 0.55 * camScale, 0, 0, 7);
         } else {
             ctx.ellipse(0, 0, p.radius * camScale, p.radius * camScale, 0, 0, 7);
-       }
+        }
         ctx.fillStyle = died
             ? freeze
                 ? renderSettings.colors.playerFreezeDead
                 : renderSettings.colors.playerDead
             : freeze
                 ? renderSettings.colors.playerFreeze
-                : skin in renderSettings.textures.skins
-                    ? "#00000000"
+                : renderSettings.textures.skins.hasOwnProperty(skin)
+                    ? "transparent"
                     : fromColArr(p.color)
         ctx.fill();
 
@@ -996,19 +996,19 @@ function renderPlayers() {
                 : freeze
                     ? renderSettings.colors.playerFreezeText
                     : "#ffffff";
-            if (p.name in SkapClientPlayers) {
+           /*  if (p.name in SkapClientPlayers) {
                 const width = ctx.measureText(p.name).width;
                 ctx.fillText(p.name, camScale * (renderSettings.textures.iconSize.x / 2 + 0.1), camScale * hat.textOffset * (isWolfie ? p.radius / 2 : p.radius));
                 ctx.globalCompositeOperation = "source-over";
                 ctx.drawImage(renderSettings.textures.skapclient, -(width + camScale * (renderSettings.textures.iconSize.x + 0.1)) / 2, camScale * hat.textOffset * (isWolfie ? p.radius / 2 : p.radius) - camScale * (renderSettings.textures.iconSize.y + 0.2) / 2, camScale * renderSettings.textures.iconSize.x, camScale * renderSettings.textures.iconSize.y);
-            } else {
+            } else  */{
                 ctx.fillText(p.name, 0, camScale * hat.textOffset * (isWolfie ? p.radius / 2 : p.radius));
                 ctx.globalCompositeOperation = "source-over";
             }
         }
 
         // fuelBar™️
-        if (renderSettings.render.playerFuel && p.name in SkapClientPlayers) {
+        /* if (renderSettings.render.playerFuel && p.name in SkapClientPlayers) {
             ctx.fillStyle = died
                 ? freeze
                     ? renderSettings.colors.playerFreezeDead
@@ -1020,12 +1020,12 @@ function renderPlayers() {
             ctx.strokeStyle = "#202020";
             ctx.lineWidth = camScale / 2;
             ctx.strokeRect(-camScale * 5, camScale * (p.radius + 1), camScale * 10, camScale * 2.5);
-        }
+        } */
 
         // Messages
         if (!showChat) {
             ctx.font = camScale * 4 + "px Tahoma, Verdana, Segoe, sans-serif";
-            if (p.name in chatMsgs) {
+            if (chatMsgs.hasOwnProperty(p.name)) {
                 let msg = chatMsgs[p.name];
                 if (msg.t--) {
                     let metrics = ctx.measureText(msg.m);
@@ -1045,7 +1045,7 @@ function renderPlayers() {
         }
 
         // Powers
-        if (renderSettings.render.playerPowers && p.name in SkapClientPlayers) {
+        /* if (renderSettings.render.playerPowers && p.name in SkapClientPlayers) {
             ctx.fillStyle = renderSettings.colors.powerBG;
             ctx.strokeStyle = renderSettings.colors.powerStroke;
 
@@ -1106,7 +1106,7 @@ function renderPlayers() {
                 5 * camScale,
                 5 * camScale
             );
-        }
+        } */
         ctx.restore();
     }
 }
