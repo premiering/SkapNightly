@@ -931,9 +931,9 @@ function renderPlayers() {
             hat = renderSettings.textures.hats[p.hat];
         }
         // Skin?
-        let skin = p.name;
+        let skin = "";//p.name;
         if (RENDER_SKIN) skin = RENDER_SKIN;
-        const isWolfie = (skin === "wolfie" || skin === "wolfer" || skin === "wolfy");
+        const isWolfie = false;//(skin === "wolfie" || skin === "wolfer" || skin === "wolfy");
 
         //Player interpolation
         /*const tickTime = 1000/30;//1000ms over 30 ticks a second
