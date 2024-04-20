@@ -538,17 +538,7 @@ function message(msg, force = false) {
                 : ["guestMsg", "userMsg", "modMsg"][msg.r + 1];
 
     //Add rainbow styling for devs, remove profanity, add <a> for links, and add timestamp
-    p.innerHTML = `<span class="
-    ${msg.r === -2
-            ? ""
-            : devs.includes(msg.s)
-                ? "devMsg"
-                : msg.s === "Whiz"
-                    ? "whizmsg"
-                    : msg.s === "Wish"
-                        ? "wishmsg"
-                        : ""
-        }">
+    p.innerHTML = `<span class="">
         ${force
             ? msg.s
             : checkProfanityString(msg.s.safe())
