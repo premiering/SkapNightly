@@ -953,13 +953,16 @@ button, .button {
     margin-right: 20px;
 }
 
+button:hover {
+    text-shadow: 1px 1px rgb(43, 43, 43);
+}
+
 #exodus-lb {
     background-color: rgba(168, 31, 180, 0.7);
     border-color: rgb(166, 44, 177);
 }
 #exodus-lb:hover {
     background-color: rgb(168, 31, 180);
-    text-shadow: 1px 1px rgb(43, 43, 43);
 }
 
 #infernus-lb {
@@ -968,7 +971,6 @@ button, .button {
 }
 #infernus-lb:hover {
     background-color: rgb(187, 61, 39);
-    text-shadow: 1px 1px rgb(43, 43, 43);
 }
 
 #inferno-lb {
@@ -977,7 +979,6 @@ button, .button {
 }
 #inferno-lb:hover {
     background-color: rgb(182, 123, 46);
-    text-shadow: 1px 1px rgb(43, 43, 43);
 }
 
 #spaceadv-lb {
@@ -986,7 +987,6 @@ button, .button {
 }
 #spaceadv-lb:hover {
     background-color: rgb(0, 0, 0);
-    text-shadow: 1px 1px rgb(43, 43, 43);
 }
 
 #nightmare-lb {
@@ -995,7 +995,6 @@ button, .button {
 }
 #nightmare-lb:hover {
     background-color: rgb(185, 34, 34);
-    text-shadow: 1px 1px rgb(43, 43, 43);
 }
 
 #lb-player-cont {
@@ -1006,4 +1005,13 @@ button, .button {
 
 .normal-placement {
     color: rgb(236, 236, 236);
+}
+
+#editorBtn {
+    background-color: rgba(182, 123, 46, 0.7);
+    border-color: rgb(182, 123, 46);
+}
+
+#editorBtn:hover {
+    background-color: rgb(182, 123, 46);
 }
