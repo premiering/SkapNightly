@@ -8,7 +8,8 @@
         "game.js",
         "handlers.js",
         "events.js",
-        "settings.js"
+        "settings.js",
+        "leaderboard.js"
     ]
     let fullSource = "";
     for (let s in scripts) {
