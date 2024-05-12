@@ -39,9 +39,9 @@ function loadAreaLeaderboards(area) {
             if (playersAdded >= lbPlayerLimit)
                 return;
 
-            const localDate = new Date(player.dateReached).toLocaleString();
+            const localDate = new Date(player.dateReached);
             playersAdded++;
-            addParagraphToLb(`#${playersAdded} ${player.playerName} | ${player.areaReached} - ${localDate}`, "normal-placement");
+            addParagraphToLb(`#${playersAdded} ${player.playerName} | ${player.areaReached} | ${localDate.toLocaleString()}`, "normal-placement");
         }
     });
 }
