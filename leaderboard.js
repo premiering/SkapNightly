@@ -39,7 +39,9 @@ function loadAreaLeaderboards(area) {
             if (playersAdded >= lbPlayerLimit)
                 return;
 
-            const localDate = new Date(player.dateReached);
+            let localDate = new Date(player.dateReached);
+            // Localize the date from UTC
+            localDate = new Date(localDate - localDate.getTimezoneOffset() * 60000);
             playersAdded++;
             addParagraphToLb(`#${playersAdded} ${player.playerName} | ${player.areaReached} | ${localDate.toLocaleString()}`, "normal-placement");
         }
