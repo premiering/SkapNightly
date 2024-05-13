@@ -15,7 +15,8 @@ body {
     justify-content: center;
     align-items: center;
     font-family: "Rubik", Arial, Helvetica, sans-serif;
-    background: #0e0e0e;
+    background: url("/Textures/purple-squares.png");
+    background-color: rgba(0,0,0,.7);
     color: #ffffff;
 }
 
