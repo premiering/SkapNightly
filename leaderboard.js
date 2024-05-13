@@ -1,4 +1,4 @@
-const tokeiUrl = "http://tokei.nightly.pw";
+const tokeiUrl = "https://tokei.nightly.pw";
 const playerContId = "lb-player-cont";
 const lbContainer = document.getElementById(playerContId);
 
