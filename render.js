@@ -166,8 +166,8 @@ function render() {
 
     if (map.color.startsWith("hsl") || map.color === "rainbow") map.color = `hsl(${time}, 75%, 40%)`;
     if (darkMode) {
-        map.color = "rgb(25, 25, 25)";
-        map.background = "rgb(50, 50, 50)";
+        map.color = "rgb(15, 15, 15)";
+        map.background = "rgb(9, 9, 9)";
     }
 
     ctx.fillStyle = map.color;
