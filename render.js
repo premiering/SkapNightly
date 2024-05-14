@@ -166,8 +166,10 @@ function render() {
 
     if (map.color.startsWith("hsl") || map.color === "rainbow") map.color = `hsl(${time}, 75%, 40%)`;
     if (useCustomTheme) {
-        map.color = themeWall;
-        map.background = themeBg;
+        if (themeWall)
+            map.color = themeWall;
+        if (themeBg)
+            map.background = themeBg;
     } else if (darkMode) {
         map.color = "rgb(15, 15, 15)";
         map.background = "rgb(9, 9, 9)";
