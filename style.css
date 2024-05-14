@@ -469,7 +469,7 @@ canvas {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    width: 350px;
+    width: 400px;
     height: fit-content;
     background: #000000c0;
     overflow: hidden;
@@ -996,6 +996,22 @@ button:hover {
 }
 #nightmare-lb:hover {
     background-color: rgb(185, 34, 34);
+}
+
+#gladv-lb {
+    background-color: rgba(26, 155, 172, 0.7);
+    border-color: rgb(16, 185, 197);
+}
+#gladv-lb:hover {
+    background-color: rgb(26, 155, 172);
+}
+
+#aprilfls-lb {
+    background-color: rgba(145, 30, 78, 0.7);
+    border-color: rgb(240, 30, 117);
+}
+#aprilfls-lb:hover {
+    background-color: rgb(145, 30, 78);
 }
 
 #lb-player-cont {

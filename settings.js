@@ -151,3 +151,27 @@ plrInterpBtn.addEventListener("input", () => {
         localStorage.removeItem("plrinterp");
     }
 });
+
+const customThemeBtn = document.getElementById("customthemebtn");
+customThemeBtn.checked = localStorage.getItem("useCustomTheme");
+customThemeBtn.addEventListener("input", () => {
+    if (customThemeBtn.checked) {
+        localStorage.setItem("useCustomTheme", "yes");
+    } else {
+        localStorage.removeItem("useCustomTheme");
+    }
+});
+
+const themeWallInput = document.getElementById("themewallclr");
+themeWallInput.value = localStorage.getItem("themeWall");
+themeWallInput.addEventListener("change", () => {
+    const val = themeWallInput.value;
+    localStorage.setItem("themeWall", val);
+});
+
+const themeBgInput = document.getElementById("themebgclr");
+themeBgInput.value = localStorage.getItem("themeBg");
+themeBgInput.addEventListener("change", () => {
+    const val = themeBgInput.value;
+    localStorage.setItem("themeBg", val);
+});

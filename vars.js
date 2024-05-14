@@ -409,6 +409,10 @@ var censor;
 var darkMode;
 var playerInterpolation;
 
+var useCustomTheme;
+var themeBg;
+var themeWall;
+
 function loadSettings() {
     othercontrols = [
         localStorage.getItem("zoomOut") ?? "u",
@@ -434,8 +438,12 @@ function loadSettings() {
     ];
     blocked = localStorage.getItem("blocked") ? localStorage.getItem("blocked").split(" ") : [];
     debug = Boolean(localStorage.getItem("debug"));
-    darkMode = Boolean(localStorage.getItem("dkmode"));
+    const dkString = localStorage.getItem("dkmode");
+    darkMode = Boolean(dkString ? dkString : true);
     playerInterpolation = Boolean(localStorage.getItem("plrinterp"));
+    useCustomTheme = localStorage.getItem("useCustomTheme");
+    themeBg = localStorage.getItem("themeBg");
+    themeWall = localStorage.getItem("themeWall");
     if (debug) {
         show(posDiv);
         show(rateDiv);
