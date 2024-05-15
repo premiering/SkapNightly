@@ -2,7 +2,7 @@ const tokeiUrl = "https://tokei.nightly.pw";
 const playerContId = "lb-player-cont";
 const lbContainer = document.getElementById(playerContId);
 
-const lbPlayerLimit = 35;
+const lbPlayerLimit = 25;
 
 const completionBasedButton = document.getElementById("completion-based-btn");
 const timelyBasedButton = document.getElementById("time-based-btn");
@@ -79,7 +79,7 @@ function addParagraphToLb(text, ...classes) {
 
 function loadCompletionLeaderboards(level) {
     setCurrentlyViewing(level);
-    fetch(tokeiUrl + "/api/leaderboard/completion?area=" + level).catch((err) => {
+    fetch(tokeiUrl + `/api/leaderboard/completion?area=${level}&limit=${lbPlayerLimit}`).catch((err) => {
         console.log(err);
         clearLbContainer();
         addParagraphToLb("Failed to load completion leaderboard.");
@@ -91,9 +91,6 @@ function loadCompletionLeaderboards(level) {
         clearLbContainer();
         let playersAdded = 0;
         for (let player of data.placements) {
-            if (playersAdded >= lbPlayerLimit)
-                return;
-
             let localDate = new Date(player.dateReached);
             // Localize the date from UTC
             localDate = new Date(localDate - localDate.getTimezoneOffset() * 60000);
@@ -108,7 +105,7 @@ function loadCompletionLeaderboards(level) {
 
 function loadTimelyLeaderboards(area) {
     setCurrentlyViewing(area);
-    fetch(tokeiUrl + "/api/leaderboard/timely?area=" + area).catch((err) => {
+    fetch(tokeiUrl + `/api/leaderboard/timely?area=${area}&limit=${lbPlayerLimit}`).catch((err) => {
         console.log(err);
         clearLbContainer();
         addParagraphToLb("Failed to load timely leaderboard.");
@@ -120,9 +117,6 @@ function loadTimelyLeaderboards(area) {
         clearLbContainer();
         let playersAdded = 0;
         for (let player of data.placements) {
-            if (playersAdded >= lbPlayerLimit)
-                return;
-
             let localDate = new Date(player.dateReached);
             // Localize the date from UTC
             localDate = new Date(localDate - localDate.getTimezoneOffset() * 60000);
