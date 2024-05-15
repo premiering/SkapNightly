@@ -24,7 +24,7 @@ function addParagraphToLb(text, ...classes) {
 }
 
 function loadAreaLeaderboards(area) {
-    fetch(tokeiUrl + "/api/leaderboard?area=" + area).catch((err) => {
+    fetch(tokeiUrl + "/api/leaderboard/completion?area=" + area).catch((err) => {
         console.log(err);
         clearLbContainer();
         addParagraphToLb("Failed to load tokei leaderboard.");
