@@ -446,14 +446,25 @@
             </div>
             <div id="leaderboards">
                 <h1 class="leaderboard-header"><a class="tokei-a" href="http://tokei.nightly.pw">tokei</a> Leaderboards</h1>
-                <p class="leaderboard-desc">Tracking runs in Overworld since 5/12/2024</p>
-                <div>                
-                    <button id="exodus-lb">Exodus</button>
-                    <button id="spaceadv-lb">Space Adv.</button>
-                    <button id="infernus-lb">Infernus</button>
-                    <button id="inferno-lb">Inferno</button>
-                    <button id="nightmare-lb">Nightmare</button>
+                <div id="lb-type-div">
+                    <button class="small-button gray-btn" id="time-based-btn">Time-based</button>
+                    <button class="small-button gray-btn" id="completion-based-btn">Completion-based</button>
                 </div>
+                <div>                
+                    <button class="small-button exodus-btn" id="exodus-lb">Exodus</button>
+                    <button class="small-button spaceadv-btn" id="spaceadv-lb">Space Adv.</button>
+                    <button class="small-button infernus-btn" id="infernus-lb">Infernus</button>
+                    <button class="small-button inferno-btn" id="inferno-lb">Inferno</button>
+                    <button class="small-button nightmare-btn" id="nightmare-lb">Nightmare</button>
+                    <button class="small-button small-button-text exodus-btn" hidden id="exodus50-lb">Exodus 50 VICTORY</button>
+                    <button class="small-button small-button-text exodus-btn " hidden id="exodus100-lb">Exodus 100 VICTORY</button>
+                    <button class="small-button small-button-text exodus-btn" hidden id="exodus150-lb">Exodus 150 VICTORY</button>
+                    <button class="small-button small-button-text spaceadv-btn" hidden id="spaceadv20-lb">Space Adv. 20 VICTORY</button>
+                    <button class="small-button small-button-text infernus-btn" hidden id="infernus25-lb">Infernus 25</button>
+                    <button class="small-button small-button-text inferno-btn" hidden id="inferno25-lb">Inferno 25</button>
+                    <button class="small-button small-button-text nightmare-btn" hidden id="nightmare20-lb">Nightmare 20</button>
+                </div>
+                <p class="leaderboard-desc" id="currently-viewing">Currently viewing _.</p>
                 <div id="lb-player-cont"></div>
             </div>
         </div>

@@ -941,7 +941,7 @@ button, .button {
 .leaderboard-header {
     color: rgb(38, 179, 122);
     margin-top: 20px;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 
 .tokei-a {
@@ -952,72 +952,96 @@ button, .button {
     color: rgb(131, 131, 131);
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 8px;
+    margin-top: 12px;
 }
 
 button:hover {
     text-shadow: 1px 1px rgb(43, 43, 43);
 }
 
-#exodus-lb {
+.small-button {
+    min-width: 80px;
+    height: 25px;
+}
+
+.small-button-text {
+    font-size: 10px;
+}
+
+.exodus-btn {
     background-color: rgba(168, 31, 180, 0.7);
     border-color: rgb(166, 44, 177);
 }
-#exodus-lb:hover {
+.exodus-btn:hover {
     background-color: rgb(168, 31, 180);
 }
 
-#infernus-lb {
+.infernus-btn {
     background-color: rgba(187, 61, 39, 0.7);
     border-color: rgb(209, 29, 29);
 }
-#infernus-lb:hover {
+.infernus-btn:hover {
     background-color: rgb(187, 61, 39);
 }
 
-#inferno-lb {
+.inferno-btn {
     background-color: rgba(182, 123, 46, 0.7);
     border-color: rgb(182, 123, 46);
 }
-#inferno-lb:hover {
+.inferno-btn:hover {
     background-color: rgb(182, 123, 46);
 }
 
-#spaceadv-lb {
+.spaceadv-btn {
     background-color: rgba(26, 26, 26, 0.7);
     border-color: rgb(0, 0, 0);
 }
-#spaceadv-lb:hover {
+.spaceadv-btn:hover {
     background-color: rgb(0, 0, 0);
 }
 
-#nightmare-lb {
+.nightmare-btn {
     background-color: rgba(177, 0, 0, 0.7);
     border-color: rgb(172, 6, 6);
 }
-#nightmare-lb:hover {
+.nightmare-btn:hover {
     background-color: rgb(185, 34, 34);
 }
 
-#gladv-lb {
+.gladv-btn {
     background-color: rgba(26, 155, 172, 0.7);
     border-color: rgb(16, 185, 197);
 }
-#gladv-lb:hover {
+.gladv-btn:hover {
     background-color: rgb(26, 155, 172);
 }
 
-#aprilfls-lb {
+.aprilfls-btn {
     background-color: rgba(145, 30, 78, 0.7);
     border-color: rgb(240, 30, 117);
 }
-#aprilfls-lb:hover {
+.aprilfls-btn:hover {
     background-color: rgb(145, 30, 78);
+}
+
+.gray-btn {
+    background-color: rgba(44, 44, 44, 0.7);
+    border-color: rgb(27, 27, 27);
+}
+
+.gray-btn {
+    background-color: rgb(44, 44, 44);
 }
 
 #lb-player-cont {
     min-height: 100px;
     overflow-y: auto;
     overflow-wrap: break-word;
+}
+
+#lb-type-div {
+    padding-bottom: 4px;
 }
 
 .normal-placement {
