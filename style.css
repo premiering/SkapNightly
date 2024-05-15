@@ -1041,10 +1041,27 @@ button:hover {
     background-color: rgba(26, 153, 53);
 }
 
-#lb-player-cont {
+#lb-scroll {
     min-height: 100px;
     overflow-y: auto;
+}
+#lb-player-cont {
+    width: 100%;
     overflow-wrap: break-word;
+    border-collapse: collapse;
+}
+#lb-player-cont > .normal-placement > td {
+    border-left: 1px solid #808080;
+    padding: 2px 7px;
+}
+/* child 1 is placement */
+#lb-player-cont > .normal-placement > td:first-child {
+    border-left: none;
+}
+/* child 2 is name */
+#lb-player-cont > .normal-placement > td:nth-child(2) {
+    border-left-color: #ffffff;
+    text-align: left;
 }
 
 #lb-type-div {
