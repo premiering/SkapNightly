@@ -1047,12 +1047,13 @@ button:hover {
 }
 #lb-player-cont {
     width: 100%;
-    overflow-wrap: break-word;
+    max-width: 100%;
     border-collapse: collapse;
 }
 #lb-player-cont > .normal-placement > td {
     border-left: 1px solid #808080;
     padding: 2px 7px;
+    overflow-wrap: anywhere;
 }
 /* child 1 is placement */
 #lb-player-cont > .normal-placement > td:first-child {
