@@ -438,8 +438,7 @@ function loadSettings() {
     ];
     blocked = localStorage.getItem("blocked") ? localStorage.getItem("blocked").split(" ") : [];
     debug = Boolean(localStorage.getItem("debug"));
-    const dkString = localStorage.getItem("dkmode");
-    darkMode = Boolean(dkString ? dkString : true);
+    darkMode = Boolean(localStorage.getItem("dkmode"));
     playerInterpolation = Boolean(localStorage.getItem("plrinterp"));
     useCustomTheme = localStorage.getItem("useCustomTheme");
     themeBg = localStorage.getItem("themeBg");
