@@ -38,10 +38,14 @@ function setCurrentType(type) {
         loadCompletionLeaderboards("Exodus");
         showButtons(buttonToCompletionLevel);
         hideButtons(buttonToTimelyArea);
+        completionBasedButton.classList.add("green-highlighted-btn");
+        timelyBasedButton.classList.remove("green-highlighted-btn");
     } else {
         loadTimelyLeaderboards("Exodus 100 VICTORY");
         showButtons(buttonToTimelyArea);
         hideButtons(buttonToCompletionLevel);
+        timelyBasedButton.classList.add("green-highlighted-btn");
+        completionBasedButton.classList.remove("green-highlighted-btn");
     }
 }
 

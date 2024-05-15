@@ -1029,9 +1029,16 @@ button:hover {
     background-color: rgba(44, 44, 44, 0.7);
     border-color: rgb(27, 27, 27);
 }
-
-.gray-btn {
+.gray-btn:hover {
     background-color: rgb(44, 44, 44);
+}
+
+.green-highlighted-btn {
+    background-color: rgba(26, 153, 53, 0.7);
+    border-color: rgb(34, 201, 70);
+}
+.green-highlighted-btn:hover {
+    background-color: rgba(26, 153, 53);
 }
 
 #lb-player-cont {
