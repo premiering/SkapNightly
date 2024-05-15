@@ -1041,10 +1041,28 @@ button:hover {
     background-color: rgba(26, 153, 53);
 }
 
-#lb-player-cont {
+#lb-scroll {
     min-height: 100px;
     overflow-y: auto;
-    overflow-wrap: break-word;
+}
+#lb-player-cont {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+#lb-player-cont > .normal-placement > td {
+    border-left: 1px solid #808080;
+    padding: 2px 7px;
+    overflow-wrap: anywhere;
+}
+/* child 1 is placement */
+#lb-player-cont > .normal-placement > td:first-child {
+    border-left: none;
+}
+/* child 2 is name */
+#lb-player-cont > .normal-placement > td:nth-child(2) {
+    border-left-color: #ffffff;
+    text-align: left;
 }
 
 #lb-type-div {

@@ -69,12 +69,18 @@ function clearLbContainer() {
     lbContainer.textContent = '';
 }
 
-function addParagraphToLb(text, ...classes) {
-    const p = document.createElement('p');
-    p.textContent = text;
+function addRowToLb(classes, ...text) {
+    const tr = document.createElement('tr');
+    const tds = text.map(t => {
+        const td = document.createElement("td");
+        td.textContent = t;
+        return td;
+    });
+    tr.append(...tds);
+
     if (classes.length > 0)
-        p.classList.add(classes);
-    lbContainer.appendChild(p);
+        tr.classList.add(classes);
+    lbContainer.appendChild(tr);
 }
 
 function loadCompletionLeaderboards(level) {
@@ -82,7 +88,7 @@ function loadCompletionLeaderboards(level) {
     fetch(tokeiUrl + `/api/leaderboard/completion?area=${level}&limit=${lbPlayerLimit}`).catch((err) => {
         console.log(err);
         clearLbContainer();
-        addParagraphToLb("Failed to load completion leaderboard.");
+        addRowToLb(["load-failed"], "Failed to load completion leaderboard.");
     }).then((resp) => {
         return resp.json();
     }).then((data) => {
@@ -94,11 +100,13 @@ function loadCompletionLeaderboards(level) {
             let localDate = new Date(player.dateReached);
             // Localize the date from UTC
             localDate = new Date(localDate - localDate.getTimezoneOffset() * 60000);
+            // This thing really likes to overflow (why is it so long)
+            const timeString = localDate.toLocaleString();
             playersAdded++;
-            addParagraphToLb(`#${playersAdded} ${player.playerName} | ${player.areaReached} | ${localDate.toLocaleString()}`, "normal-placement");
+            addRowToLb(["normal-placement"], `#${playersAdded}`, player.playerName, player.areaReached, timeString);
         }
         if (playersAdded == 0) {
-            addParagraphToLb("No one has played this level!");
+            addRowToLb(["empty-leaderboard"], "No one has played this level!");
         }
     });
 }
@@ -108,7 +116,7 @@ function loadTimelyLeaderboards(area) {
     fetch(tokeiUrl + `/api/leaderboard/timely?area=${area}&limit=${lbPlayerLimit}`).catch((err) => {
         console.log(err);
         clearLbContainer();
-        addParagraphToLb("Failed to load timely leaderboard.");
+        addRowToLb(["load-failed"], "Failed to load timely leaderboard.");
     }).then((resp) => {
         return resp.json();
     }).then((data) => {
@@ -121,10 +129,10 @@ function loadTimelyLeaderboards(area) {
             // Localize the date from UTC
             localDate = new Date(localDate - localDate.getTimezoneOffset() * 60000);
             playersAdded++;
-            addParagraphToLb(`#${playersAdded} ${player.playerName} | ${msToTime(player.timeReachedMs)}`, "normal-placement");
+            addRowToLb(["normal-placement"], `#${playersAdded}`, player.playerName, msToTime(player.timeReachedMs));
         }
         if (playersAdded == 0) {
-            addParagraphToLb("No one has reached this area!");
+            addRowToLb(["empty-leaderboard"], "No one has reached this area!");
         }
     });
 }
