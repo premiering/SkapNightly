@@ -2,6 +2,13 @@ const tokeiUrl = "https://tokei.nightly.pw";
 const playerContId = "lb-player-cont";
 const lbContainer = document.getElementById(playerContId);
 
+const disabledTimelyAreas = [
+    "Nightmare 20"
+];
+const disabledCompletionLevels = [
+    "Nightmare"
+];
+
 const lbPlayerLimit = 25;
 
 const completionBasedButton = document.getElementById("completion-based-btn");
@@ -85,6 +92,11 @@ function addRowToLb(classes, ...text) {
 
 function loadCompletionLeaderboards(level) {
     setCurrentlyViewing(level);
+    if (disabledCompletionLevels.includes(level)) {
+        clearLbContainer();
+        addRowToLb(["lb-maintenence"], "This leaderboard is currently disabled for maintenence.");
+        return;
+    }
     fetch(tokeiUrl + `/api/leaderboard/completion?area=${level}&limit=${lbPlayerLimit}`).catch((err) => {
         console.log(err);
         clearLbContainer();
@@ -92,9 +104,9 @@ function loadCompletionLeaderboards(level) {
     }).then((resp) => {
         return resp.json();
     }).then((data) => {
+        clearLbContainer();
         if (!data.placements)
             return;
-        clearLbContainer();
         let playersAdded = 0;
         for (let player of data.placements) {
             let localDate = new Date(player.dateReached);
@@ -113,6 +125,11 @@ function loadCompletionLeaderboards(level) {
 
 function loadTimelyLeaderboards(area) {
     setCurrentlyViewing(area);
+    if (disabledTimelyAreas.includes(area)) {
+        clearLbContainer();
+        addRowToLb(["lb-maintenence"], "This leaderboard is currently disabled for maintenence.");
+        return;
+    }
     fetch(tokeiUrl + `/api/leaderboard/timely?area=${area}&limit=${lbPlayerLimit}`).catch((err) => {
         console.log(err);
         clearLbContainer();
@@ -120,9 +137,9 @@ function loadTimelyLeaderboards(area) {
     }).then((resp) => {
         return resp.json();
     }).then((data) => {
+        clearLbContainer();
         if (!data.placements)
             return;
-        clearLbContainer();
         let playersAdded = 0;
         for (let player of data.placements) {
             let localDate = new Date(player.dateReached);
