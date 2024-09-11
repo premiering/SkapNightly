@@ -410,6 +410,54 @@
             </div>
             <canvas id="render">CANVAS_NOT_SUPPORTED</canvas>
         </div>
+        <div id="lb-farewell-div" class="hidden">
+            <h1 id="lb-farewell-title">Where did the leaderboards go❓</h1>
+            <p>The leaderboards ran for a short time, only from <a class="underlined">5/12/2024</a> to <a class="underlined">7/24/2024</a> (only 73 days). I shut them down because they cost a little bit of money to run, and I want to save money. Only reason. Maybe they will come back one day.</p>
+            <p class="underlined">Anyways, if you're curious about the final standings and stats, here they are!</p>
+            <div id="lb-farewell-info-cont">
+                <div id="leaderboards">
+                    <h1 class="leaderboard-header"><a class="tokei-a" href="http://tokei.nightly.pw">tokei</a> Leaderboards</h1>
+                    <div id="lb-type-div">
+                        <button class="small-button gray-btn" id="time-based-btn">Time-based</button>
+                        <button class="small-button gray-btn" id="completion-based-btn">Completion-based</button>
+                    </div>
+                    <div>                
+                        <button class="small-button exodus-btn" id="exodus-lb">Exodus</button>
+                        <button class="small-button spaceadv-btn" id="spaceadv-lb">Space Adv.</button>
+                        <button class="small-button infernus-btn" id="infernus-lb">Infernus</button>
+                        <button class="small-button inferno-btn" id="inferno-lb">Inferno</button>
+                        <button class="small-button nightmare-btn" id="nightmare-lb">Nightmare</button>
+                        <button class="small-button small-button-text exodus-btn" hidden id="exodus2-lb">Exodus 2</button>
+                        <button class="small-button small-button-text exodus-btn" hidden id="exodus50-lb">Exodus 50 VICTORY</button>
+                        <button class="small-button small-button-text exodus-btn " hidden id="exodus100-lb">Exodus 100 VICTORY</button>
+                        <button class="small-button small-button-text exodus-btn" hidden id="exodus150-lb">Exodus 150 VICTORY</button>
+                        <button class="small-button small-button-text spaceadv-btn" hidden id="spaceadv20-lb">Space Adv. 20 VICTORY</button>
+                        <button class="small-button small-button-text infernus-btn" hidden id="infernus25-lb">Infernus 25</button>
+                        <button class="small-button small-button-text inferno-btn" hidden id="inferno25-lb">Inferno 25</button>
+                        <button class="small-button small-button-text nightmare-btn" hidden id="nightmare20-lb">Nightmare 20</button>
+                    </div>
+                    <p class="leaderboard-desc" id="currently-viewing">Currently viewing _.</p>
+                    <div id="lb-scroll">
+                        <table id="lb-player-cont"></table>
+                    </div>
+                </div>
+                <div id="lb-farewell-lb-stats">
+                    <h1 class="leaderboard-header">Fun stats</h1>
+                    <p class="lb-stat-line">Exodus 100 VICTORY had a play time of 46 days, 22 hours, and 56 seconds.</p>
+                    <p class="lb-stat-line">Exodus 150 VICTORY had a play time of 22 days, 13 hours, and 9 seconds.</p>
+                    <p class="lb-stat-line">Space Advanced 20 VICTORY had a play time of 13 days, 26 hours, and 1 second.</p>
+                    <p class="lb-stat-line">Infernus 25 had a play time of 15 days, 51 hours, and 3 seconds.</p>
+                    <p class="lb-stat-line">Inferno 25 had a play time of 27 days, 41 hours, and 51 seconds.</p>
+                    <p class="lb-stat-line">Nightmare 20 had a play time of 36 days, 38 hours, and 36 seconds.</p>
+                    <p class="lb-stat-line">Exodus 2 had a play time of 1 day, 30 hours, and 47 seconds.</p>
+                    <p class="lb-stat-line">Exodus 50 VICTORY had a play time of 33 days and 20 seconds.</p>
+                    <p class="lb-stat-line">There were 2,476 unique players.</p>
+                    <p class="lb-stat-line">The timely leaderboards' playtime for high scores only was 196 days, 44 hours, and 46 seconds.</p>
+                </div>
+            </div>
+            <p>If you want the data for yourself, <a href="https://github.com/premiering/tokei-skap/tree/master/archive">click here for more info.</a> Thanks for participating, it was fun! 😛</p>
+            <button id="lb-fw-close-btn" class="close">Close</button>
+        </div>
         <div id="loginDiv" class="hidden">
             <h2 id="logo" class="noselect" style="color: rgb(125, 74, 190); margin: 0px;">skap-nightly</h1>
             <h4 id="desc" class="noselect" style="color: rgb(100, 100, 100); margin: 10px; margin-bottom: 16px; font-weight: 600;">a <a href="https://nky5223.github.io/SkapClient/">skapclient</a> fork meant for ease of use, customizability, and looks.</h2>
@@ -443,31 +491,7 @@
                 <a href="https://skap.nightly.pw/editor"><button id="editorBtn">Editor</button></a>
                 <a href="https://discord.com/invite/rD7fKuJ"><button id="login">Discord</button></a>
                 <a href="https://github.com/premiering/SkapNightly"><button id="changingRoomBtn">GitHub</button></a>
-            </div>
-            <div id="leaderboards">
-                <h1 class="leaderboard-header"><a class="tokei-a" href="http://tokei.nightly.pw">tokei</a> Leaderboards</h1>
-                <div id="lb-type-div">
-                    <button class="small-button gray-btn" id="time-based-btn">Time-based</button>
-                    <button class="small-button gray-btn" id="completion-based-btn">Completion-based</button>
-                </div>
-                <div>                
-                    <button class="small-button exodus-btn" id="exodus-lb">Exodus</button>
-                    <button class="small-button spaceadv-btn" id="spaceadv-lb">Space Adv.</button>
-                    <button class="small-button infernus-btn" id="infernus-lb">Infernus</button>
-                    <button class="small-button inferno-btn" id="inferno-lb">Inferno</button>
-                    <button class="small-button nightmare-btn" id="nightmare-lb">Nightmare</button>
-                    <button class="small-button small-button-text exodus-btn" hidden id="exodus50-lb">Exodus 50 VICTORY</button>
-                    <button class="small-button small-button-text exodus-btn " hidden id="exodus100-lb">Exodus 100 VICTORY</button>
-                    <button class="small-button small-button-text exodus-btn" hidden id="exodus150-lb">Exodus 150 VICTORY</button>
-                    <button class="small-button small-button-text spaceadv-btn" hidden id="spaceadv20-lb">Space Adv. 20 VICTORY</button>
-                    <button class="small-button small-button-text infernus-btn" hidden id="infernus25-lb">Infernus 25</button>
-                    <button class="small-button small-button-text inferno-btn" hidden id="inferno25-lb">Inferno 25</button>
-                    <button class="small-button small-button-text nightmare-btn" hidden id="nightmare20-lb">Nightmare 20</button>
-                </div>
-                <p class="leaderboard-desc" id="currently-viewing">Currently viewing _.</p>
-                <div id="lb-scroll">
-                    <table id="lb-player-cont"></table>
-                </div>
+                <button id="lb-fw-btn" class="close">Leaderboards?</button>
             </div>
         </div>
         <div id="createGameMenu" class="hidden">

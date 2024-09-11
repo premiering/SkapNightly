@@ -1,4 +1,10 @@
-const tokeiUrl = "https://tokei.nightly.pw";
+// Serves the archive data in the leaderboard farewell message.
+
+//const leaderboardsEnabled = true;
+const lbFarewellDiv = document.getElementById("lb-farewell-div");
+const lbFwBtn = document.getElementById("lb-fw-btn");
+const lbFwCloseBtn = document.getElementById("lb-fw-close-btn");
+
 const playerContId = "lb-player-cont";
 const lbContainer = document.getElementById(playerContId);
 
@@ -8,8 +14,6 @@ const disabledTimelyAreas = [
 const disabledCompletionLevels = [
     "Nightmare"
 ];
-
-const lbPlayerLimit = 25;
 
 const completionBasedButton = document.getElementById("completion-based-btn");
 const timelyBasedButton = document.getElementById("time-based-btn");
@@ -24,6 +28,7 @@ buttonToCompletionLevel.set("inferno-lb", "Inferno");
 buttonToCompletionLevel.set("nightmare-lb", "Nightmare");
 
 const buttonToTimelyArea = new Map();
+buttonToTimelyArea.set("exodus2-lb", "Exodus 2");
 buttonToTimelyArea.set("exodus50-lb", "Exodus 50 VICTORY");
 buttonToTimelyArea.set("exodus100-lb", "Exodus 100 VICTORY");
 buttonToTimelyArea.set("exodus150-lb", "Exodus 150 VICTORY");
@@ -91,13 +96,12 @@ function addRowToLb(classes, ...text) {
 }
 
 function loadCompletionLeaderboards(level) {
-    setCurrentlyViewing(level);
     if (disabledCompletionLevels.includes(level)) {
-        clearLbContainer();
-        addRowToLb(["lb-maintenence"], "This leaderboard is currently disabled for maintenence.");
-        return;
+        setCurrentlyViewing(level + " (data here is inaccurate due to extremely broken glitches)")
+    } else {
+        setCurrentlyViewing(level);
     }
-    fetch(tokeiUrl + `/api/leaderboard/completion?area=${level}&limit=${lbPlayerLimit}`).catch((err) => {
+    fetch(`/archive/completion/${level}.json`).catch((err) => {
         console.log(err);
         clearLbContainer();
         addRowToLb(["load-failed"], "Failed to load completion leaderboard.");
@@ -124,13 +128,14 @@ function loadCompletionLeaderboards(level) {
 }
 
 function loadTimelyLeaderboards(area) {
-    setCurrentlyViewing(area);
     if (disabledTimelyAreas.includes(area)) {
-        clearLbContainer();
-        addRowToLb(["lb-maintenence"], "This leaderboard is currently disabled for maintenence.");
-        return;
+        setCurrentlyViewing(area + " (data here is inaccurate due to extremely broken glitches)")
+    } else if (area == "Exodus 2") {
+        setCurrentlyViewing(area + " (originally added for testing, then stayed in production for fun)");
+    } else {
+        setCurrentlyViewing(area);
     }
-    fetch(tokeiUrl + `/api/leaderboard/timely?area=${area}&limit=${lbPlayerLimit}`).catch((err) => {
+    fetch(`/archive/timely/${area}.json`).catch((err) => {
         console.log(err);
         clearLbContainer();
         addRowToLb(["load-failed"], "Failed to load timely leaderboard.");
@@ -140,6 +145,7 @@ function loadTimelyLeaderboards(area) {
         clearLbContainer();
         if (!data.placements)
             return;
+        
         let playersAdded = 0;
         for (let player of data.placements) {
             let localDate = new Date(player.dateReached);
@@ -164,18 +170,24 @@ for (let [button, levelName] of buttonToCompletionLevel) {
         loadCompletionLeaderboards(levelName);
     });
 }
-
 for (let [button, levelName] of buttonToTimelyArea) {
     document.getElementById(button).addEventListener('click', () => {
         loadTimelyLeaderboards(levelName);
     });
 }
-
 completionBasedButton.addEventListener("click", () => {
     setCurrentType(TYPE_COMPLETION);
 });
 timelyBasedButton.addEventListener("click", () => {
     setCurrentType(TYPE_TIMELY);
 });
-
+function toggleLbFarewell() {
+    if (lbFarewellDiv.classList.contains("hidden")) {
+        lbFarewellDiv.classList.remove("hidden");
+    } else {
+        lbFarewellDiv.classList.add("hidden");
+    }
+}
+lbFwBtn.addEventListener("click", toggleLbFarewell)
+lbFwCloseBtn.addEventListener("click", toggleLbFarewell)
 setCurrentType(TYPE_TIMELY);
