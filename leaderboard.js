@@ -145,8 +145,9 @@ function loadTimelyLeaderboards(area) {
             let localDate = new Date(player.dateReached);
             // Localize the date from UTC
             localDate = new Date(localDate - localDate.getTimezoneOffset() * 60000);
+            const timeString = localDate.toLocaleString();
             playersAdded++;
-            addRowToLb(["normal-placement"], `#${playersAdded}`, player.playerName, msToTime(player.timeReachedMs));
+            addRowToLb(["normal-placement"], `#${playersAdded}`, player.playerName, timeString, msToTime(player.timeReachedMs));
         }
         if (playersAdded == 0) {
             addRowToLb(["empty-leaderboard"], "No one has reached this area!");
