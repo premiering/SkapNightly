@@ -9,7 +9,7 @@ const disabledCompletionLevels = [
     "Nightmare"
 ];
 
-const lbPlayerLimit = 25;
+const lbPlayerLimit = 100;
 
 const completionBasedButton = document.getElementById("completion-based-btn");
 const timelyBasedButton = document.getElementById("time-based-btn");
@@ -69,7 +69,7 @@ function showButtons(buttonToXMap) {
 }
 
 function setCurrentlyViewing(s) {
-    currentlyViewingP.textContent = "Currently viewing " + s + ".";
+    currentlyViewingP.textContent = "Currently viewing " + s + `. (Top ${lbPlayerLimit} only)`;
 }
 
 function clearLbContainer() {
