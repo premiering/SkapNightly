@@ -69,7 +69,7 @@ function showButtons(buttonToXMap) {
 }
 
 function setCurrentlyViewing(s) {
-    currentlyViewingP.textContent = "Currently viewing " + s + `. (Top ${lbPlayerLimit} only)`;
+    currentlyViewingP.textContent = "Currently viewing " + s + `. (Top ${lbPlayerLimit})`;
 }
 
 function clearLbContainer() {
